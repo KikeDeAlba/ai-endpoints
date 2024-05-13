@@ -31,6 +31,8 @@ app.get('/8ball', async (c) => {
         messages: [{ role: 'user', content: question }],
       })
 
+      console.log(completion.choices[0].message.content)
+
     return c.text(completion.choices[0].message.content)
 })
 
