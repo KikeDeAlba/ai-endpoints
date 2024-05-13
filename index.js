@@ -25,4 +25,6 @@ app.get('/8ball', async (c) => {
     return c.text(completion.choices[0].message.content)
 })
 
-serve(app);
+serve({
+  port: 1337
+}, app);
