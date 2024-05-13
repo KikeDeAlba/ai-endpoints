@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { serve } from '@hono/node-server'
 import OpenAI from "openai";
 import { cors } from 'hono/cors'
+import fs from 'fs'
 
 const openai = new OpenAI({
     baseURL: 'http://localhost:11434/v1',
@@ -40,5 +41,7 @@ serve({
   fetch:app.fetch,
   port: 1337,
   serverOptions: {
+    cert: fs.readFileSync('/etc/letsencrypt/live/vps.focograficomx.com/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/vps.focograficomx.com/privkey.pem')
   }
 });
