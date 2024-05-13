@@ -34,7 +34,7 @@ app.get('/8ball', async (c) => {
 
       console.log(completion.choices[0].message.content)
 
-    return c.text(completion.choices[0].message.content)
+    return c.status(200).text(completion.choices[0].message.content)
 })
 
 serve({
