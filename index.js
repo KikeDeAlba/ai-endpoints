@@ -42,6 +42,9 @@ serve({
   port: 1337,
   serverOptions: {
     cert: fs.readFileSync('/etc/letsencrypt/live/vps.focograficomx.com/fullchain.pem'),
-    key: fs.readFileSync('/etc/letsencrypt/live/vps.focograficomx.com/privkey.pem')
-  }
+    key: fs.readFileSync('/etc/letsencrypt/live/vps.focograficomx.com/privkey.pem'),
+    keepAlive: true,
+    keepAliveTimeout: 20000,
+  },
+  hostname: 'vps.focograficomx.com'
 });
