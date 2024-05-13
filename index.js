@@ -26,5 +26,6 @@ app.get('/8ball', async (c) => {
 })
 
 serve({
+  fetch:app.fetch,
   port: 1337
-}, app);
+});
