@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { serve } from '@hono/node-server'
 import OpenAI from "openai";
+import { cors } from 'hono/cors'
 
 const openai = new OpenAI({
     baseURL: 'http://localhost:11434/v1',
@@ -9,6 +10,14 @@ const openai = new OpenAI({
 
 
 const app = new Hono();
+
+app.use(cors({
+  origin: '*',
+  methods: '*',
+  allowHeaders: '*',
+  allowMethods: '*',
+  credentials: true
+}))
 
 app.get('/8ball', async (c) => {
     const url = new URL(c.req.url)
@@ -27,5 +36,7 @@ app.get('/8ball', async (c) => {
 
 serve({
   fetch:app.fetch,
-  port: 1337
+  port: 1337,
+  serverOptions: {
+  }
 });
